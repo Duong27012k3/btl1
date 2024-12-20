@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang = "en" layout:decorate = "~{layout}" xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>ProductBom</title>
+</head>
+<body>
+<section layout:fragment = "content">
+    <div class = "content-wrapper">
+        <div class = "content-header">
+            <div class = "container-fluid">
+                <div class = "row mb-2">
+                    <div class = "col-sm-6">
+                        <h1 class = "m-0">ProductBom</h1>
+                    </div>
+                    <div class = "col-sm-6">
+                        <ol class = "breadcrumb float-sm-right">
+                            <li class = "breadcrumb-item"><a href = "/">Home</a></li>
+                            <li class = "breadcrumb-item active">ProductBom</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class = "content">
+<!--            code here-->
+            <div align="center">
+                <h1>ProductBom List</h1>
+
+                <br/><br/>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Name ProductBom</th>
+                        <th>Quantity</th>
+                        <th>CreateAt</th>
+                        <th>Unit</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="productbom:${productbomList}">
+                        <td th:text="${productbom.name}">Name ProductBom</td>
+                        <td th:text="${productbom.quantity}">Quantity</td>
+                        <td th:text="${productbom.createdAt}">CreateAt</td>
+                        <td th:text="${productbom.unit}">Unit</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
+</body>
+</html>

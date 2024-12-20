@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang = "en" layout:decorate = "~{layout}" xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Edit product</title>
+</head>
+<body>
+<section layout:fragment = "content">
+    <div class = "content-wrapper">
+        <div class = "content-header">
+            <div class = "container-fluid">
+                <div class = "row mb-2">
+                    <div class = "col-sm-6">
+                        <h1 class = "m-0">Edit product</h1>
+                    </div>
+                    <div class = "col-sm-6">
+                        <ol class = "breadcrumb float-sm-right">
+                            <li class = "breadcrumb-item"><a href = "/">Home</a></li>
+                            <li class = "breadcrumb-item"><a href = "/product">Product</a></li>
+                            <li class = "breadcrumb-item active">Edit</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class = "content">
+            <!--                    code here-->
+            <div align="center">
+
+                <br/>
+                <form action="#" th:action="@{'/product/submit/' +${product.id}}" th:object="${product}" method="get">
+                    <table border="0" cellpadding="10" >
+                        <tr>
+                            <td>Product Name:</td>
+                            <td><input type="text" th:field="*{name}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Category:</td>
+                            <td><input type="text" th:field="*{category}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Weight(Kg):</td>
+                            <td><input type="text" th:field="*{weight}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Size(m^3):</td>
+                            <td><input type="text" th:field="*{size}" /></td>
+                        </tr>
+                        <tr>
+                            <td>UpdateAt:</td>
+                            <td><input type="date" th:field="*{updatedAt}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Status:</td>
+                            <td>
+                                <select th:field="*{status}">
+                                    <option th:value="'1'" th:text="1" selected></option>
+                                    <option th:value="'2'" th:text="2"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Supplier:</td>
+                            <td>
+                                <select th:field="*{supplier}" required>
+                                    <option value="" disabled selected>Choose a Supplier</option>
+                                    <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <h3>Productbom</h3>
+                    <table border="0" cellpadding="10">
+                        <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>CreatedAt</th>
+                            <th>Unit</th>
+                        </tr>
+                        </thead>
+                        <tbody id="productbom-table">
+                        <tr th:each=" productbom1: ${productbomList}">
+                            <td><input class="select-checkbox" type="checkbox"></td>
+                            <td><input name="oldName[]" th:value="${productbom1.name}" type="text"/></td>
+                            <td><input name="oldQuantity[]" th:value="${productbom1.quantity}" type="number"/></td>
+                            <td><input name="oldCreatedAt[]" th:value="${productbom1.createdAt}" type="date"/></td>
+                            <td><input name="oldUnit[]" th:value="${productbom1.unit}" type="text"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="actions">
+                        <button id="add-new-btn" type="button">Add Row</button>
+                        <button id="delete-btn" type="button">Delete</button>
+                        <script>
+                            const btn = document.getElementById('add-new-btn');
+                            const btnDel = document.getElementById('delete-btn');
+                            const orderDetailsTable = document.getElementById('productbom-table');
+
+                            function appendHTML() {
+                                const newRow = document.createElement('tr');
+                                newRow.innerHTML = `
+                        <td><input type="checkbox" class="select-checkbox" /></td>
+                        <td><input type="text" name="newName[]" /></td>
+                        <td><input type="number" name="newQuantity[]" /></td>
+                        <td><input type="date" name="newCreatedAt[]" /></td>
+                        <td><input type="text" name="newUnit[]" /></td>
+                    `;
+                                orderDetailsTable.appendChild(newRow);
+                            }
+
+                            function delHTML() {
+                                const checkboxes = document.querySelectorAll('.select-checkbox:checked');
+                                checkboxes.forEach(checkbox => {
+                                    const row = checkbox.closest('tr');
+                                    row.remove();
+
+                                });
+                            }
+
+                            btn.addEventListener('click', appendHTML);
+                            btnDel.addEventListener('click', delHTML);
+                        </script>
+
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang = "en" layout:decorate = "~{layout}" xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Supplier</title>
+    </head>
+    <body>
+        <section layout:fragment = "content">
+            <div class = "content-wrapper">
+                <div class = "content-header">
+                    <div class = "container-fluid">
+                        <div class = "row mb-2">
+                            <div class = "col-sm-6">
+                                <h1 class = "m-0">Supplier</h1>
+                            </div>
+                            <div class = "col-sm-6">
+                                <ol class = "breadcrumb float-sm-right">
+                                    <li class = "breadcrumb-item"><a href = "/">Home</a></li>
+                                    <li class = "breadcrumb-item active">Supplier</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class = "content">
+                    <div align="center">
+                        <h1>Supplier List</h1>
+                        <a href="/supplier/add">Add supplier</a>
+                        <br/><br/>
+                        <table border="1" cellpadding="10">
+                            <thead>
+                            <tr>
+                                <th>Name Supplier</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="supplier:${listSuppliers}">
+                                <td th:text="${supplier.name}">Name Supplier</td>
+                                <td th:text="${supplier.address}">Address</td>
+                                <td th:text="${supplier.phone}">Phone</td>
+                                <td th:text="${supplier.email}">Email</td>
+                                <td th:text="${supplier.status}">Status</td>
+                                <td>
+<!--                                    <a th:href="@{'/edit/' + ${supplier.id}}">Edit</a>-->
+<!--                                    &nbsp;&nbsp;&nbsp;-->
+                                    <a th:href="@{'/supplier/delete/' + ${supplier.id}}">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </body>
+</html>

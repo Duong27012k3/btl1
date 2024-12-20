@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang = "en" layout:decorate = "~{layout}" xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Register</title>
+    </head>
+    <body>
+        <section layout:fragment = "content">
+            <div class = "content-wrapper">
+                <div class = "content-header">
+                    <div class = "container-fluid">
+                        <div class = "row mb-2">
+                            <div class = "col-sm-6">
+                                <h1 class = "m-0">Register</h1>
+                            </div>
+                            <div class = "col-sm-6">
+                                <ol class = "breadcrumb float-sm-right">
+                                    <li class = "breadcrumb-item"><a href = "/">Home</a></li>
+                                    <li class = "breadcrumb-item active">Register</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class = "content">
+                    <div class = "container-fluid">
+                        <div class = "row">
+                            <div class = "col-md-12">
+                                <div class = "card card-primary">
+                                    <div class = "card-header">
+                                        <h3 class = "card-title">Register</h3>
+                                    </div>
+                                    <form id = "quickForm" method = "post" th:object = "${UserDTO}">
+                                        <input th:name = "${_csrf.parameterName}" th:value = "${_csrf.token}" type = "hidden"/>
+                                        <div class = "card-body">
+                                            <div class = "form-group">
+                                                <label for = "username">Username</label>
+                                                <input class = "form-control" id = "username" placeholder = "Enter username" required th:field = "${UserDTO.username}" type = "text">
+                                                <p th:errorclass = "text-danger" th:errors = "${UserDTO.username}" th:if = "${#fields.hasErrors('username')}"></p>
+                                            </div>
+                                            <div class = "form-group">
+                                                <label for = "password">Password</label>
+                                                <input class = "form-control" id = "password" placeholder = "Enter password" required th:field = "${UserDTO.password}" type = "password">
+                                                <p th:errorclass = "text-danger" th:errors = "${UserDTO.password}" th:if = "${#fields.hasErrors('password')}"></p>
+                                            </div>
+                                            <div class = "form-group">
+                                                <label for = "confirmPassword">Confirm password</label>
+                                                <input class = "form-control" id = "confirmPassword" placeholder = "Enter password" required th:field = "${UserDTO.confirmPassword}" type = "password">
+                                                <p th:errorclass = "text-danger" th:errors = "${UserDTO.confirmPassword}" th:if = "${#fields.hasErrors('confirmPassword')}"></p>
+                                            </div>
+                                            <div class = "form-group mb-0">
+                                                <div class = "custom-control custom-checkbox">
+                                                    <input class = "custom-control-input" id = "exampleCheck1" name = "terms" type = "checkbox">
+                                                    <label class = "custom-control-label" for = "exampleCheck1">I agree to the
+                                                        <a href = "#">terms of service</a>.</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = "card-footer">
+                                            <button class = "btn btn-primary" type = "submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </body>
+</html>

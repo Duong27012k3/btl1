@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang = "en" layout:decorate = "~{layout}" xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Product</title>
+    </head>
+    <body>
+        <section layout:fragment = "content">
+            <div class = "content-wrapper">
+                <div class = "content-header">
+                    <div class = "container-fluid">
+                        <div class = "row mb-2">
+                            <div class = "col-sm-6">
+                                <h1 class = "m-0">Product</h1>
+                            </div>
+                            <div class = "col-sm-6">
+                                <ol class = "breadcrumb float-sm-right">
+                                    <li class = "breadcrumb-item"><a href = "/">Home</a></li>
+                                    <li class = "breadcrumb-item active">Product</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class = "content">
+<!--                    code here-->
+                    <div align="center">
+                        <a href="/product/add">Add product</a>
+<!--                        <a href="/product/productbom/">Detail</a>-->
+                        <br/><br/>
+                        <table border="1" cellpadding="10">
+                            <thead>
+                            <tr>
+                                <th>Name Product</th>
+                                <th>Category</th>
+                                <th>Weight</th>
+                                <th>Size</th>
+                                <th>Supplier</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr th:each="product: ${productList}">
+                                <td th:text="${product.name}">Name Product</td>
+                                <td th:text="${product.category}">Category</td>
+                                <td th:text="${product.weight}">Weight</td>
+                                <td th:text="${product.size}">Size</td>
+                                <td th:text="${product.supplier.name}">Supplier</td>
+                                <td th:text="${product.status}">Status</td>
+                                <td>
+                                    <a th:href="@{'/product/detail/' + ${product.id}}">Detail</a>
+                                    &nbsp;
+                                    <a th:href="@{'/product/edit/' + ${product.id}}">Edit</a>
+
+                                    <a th:href="@{'/product/delete/' + ${product.id}}">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </body>
+</html>

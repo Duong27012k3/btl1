@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang = "en" layout:decorate = "~{layout}" xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Add product</title>
+
+
+    </head>
+    <body>
+        <section layout:fragment = "content">
+            <div class = "content-wrapper">
+                <div class = "content-header">
+                    <div class = "container-fluid">
+                        <div class = "row mb-2">
+                            <div class = "col-sm-6">
+                                <h1 class = "m-0">Add product</h1>
+                            </div>
+                            <div class = "col-sm-6">
+                                <ol class = "breadcrumb float-sm-right">
+                                    <li class = "breadcrumb-item"><a href = "/">Home</a></li>
+                                    <li class = "breadcrumb-item"><a href = "/product">Product</a></li>
+                                    <li class = "breadcrumb-item active">Add</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class = "content">
+<!--                    code here-->
+                    <div align="center">
+                        <br />
+                        <form action="#" th:action="@{/product/save}" th:object="${product}" method="get">
+                            <table border="0" cellpadding="10">
+                                <tr>
+                                    <td>Product Name:</td>
+                                    <td><input type="text" th:field="*{name}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Category:</td>
+                                    <td><input type="text" th:field="*{category}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Weight(kg):</td>
+                                    <td><input type="text" th:field="*{weight}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Size(m^3):</td>
+                                    <td><input type="text" th:field="*{size}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>CreatedAt:</td>
+                                    <td><input type="date" th:field="*{createdAt}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>UpdateAt:</td>
+                                    <td><input type="date" th:field="*{updatedAt}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>DeleteAt:</td>
+                                    <td><input type="date" th:field="*{deletedAt}" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Status:</td>
+                                    <td>
+                                        <select th:field="*{status}">
+                                            <option th:value="'1'" th:text="1" selected></option>
+                                            <option th:value="'2'" th:text="2"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Supplier:</td>
+                                    <td>
+                                        <select th:field="*{supplier}" required>
+                                            <option value="" disabled selected>Choose a Supplier</option>
+                                            <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"><button type="submit">Save</button> </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </body>
+</html>

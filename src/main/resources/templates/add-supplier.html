@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang = "en" layout:decorate = "~{layout}" xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Add supplier</title>
+    </head>
+    <body>
+        <section layout:fragment = "content">
+            <div class = "content-wrapper">
+                <div class = "content-header">
+                    <div class = "container-fluid">
+                        <div class = "row mb-2">
+                            <div class = "col-sm-6">
+                                <h1 class = "m-0">Add supplier</h1>
+                            </div>
+                            <div class = "col-sm-6">
+                                <ol class = "breadcrumb float-sm-right">
+                                    <li class = "breadcrumb-item"><a href = "/">Home</a></li>
+                                    <li class = "breadcrumb-item"><a href = "/supplier">Supplier</a></li>
+                                    <li class = "breadcrumb-item active">Add</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class = "content">
+<!--                    code here-->
+                    <div align="center">
+
+                        <br/>
+                        <form action="#" th:action="@{/supplier/save}" th:object="${supplier1}" method="post">
+                           <table border="0" cellpadding="10" >
+                               <tr>
+                                   <td>Supplier Name:</td>
+                                   <td><input type="text" th:field="*{name}" /></td>
+                               </tr>
+                               <tr>
+                                   <td>Address:</td>
+                                   <td><input type="text" th:field="*{address}" /></td>
+                               </tr>
+                               <tr>
+                                   <td>Phone:</td>
+                                   <td><input type="text" th:field="*{phone}" /></td>
+                               </tr>
+                               <tr>
+                                   <td>Email:</td>
+                                   <td><input type="text" th:field="*{email}" /></td>
+                               </tr>
+                               <tr>
+                                   <td>Status:</td>
+                                   <td>
+                                       <select th:field="*{status}">
+                                           <option th:value="'1'" th:text="1" selected></option>
+                                           <option th:value="'2'" th:text="2"></option>
+                                       </select>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td colspan="2"><button type="submit">Save</button> </td>
+                               </tr>
+                           </table>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </body>
+</html>
